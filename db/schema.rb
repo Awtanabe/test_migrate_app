@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_10_11_050220) do
 
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
