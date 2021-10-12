@@ -26,15 +26,22 @@ class TodosController < ApplicationController
     respond_to do |format|
       if @todo.save
 
-        task = Task.first
+        todo = Todo.first
         user = User.first
         # @todo.title = "yahoo"
         binding.pry
-        @todo.with_lock do
 
-          @todo.status = 1
-          @todo.save!
-        end
+
+      ActiveRecord::Base.transaction do
+        todo.done!
+        User.create!(email: "aa@aa.aa", password: 'password')
+      end
+
+        # @todo.with_lock do
+
+        #   @todo.status = 1
+        #   @todo.save!
+        # end
         # user.with_lock do
         #   User.create(email: "aa@aa.aa",password: "password")
         #   task.done!
@@ -48,7 +55,12 @@ class TodosController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
+
+
     end
+    rescue => e
+      binding.pry
+
   end
 
   # PATCH/PUT /todos/1 or /todos/1.json

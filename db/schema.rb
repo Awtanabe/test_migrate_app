@@ -10,16 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_090756) do
+ActiveRecord::Schema.define(version: 2021_10_11_091541) do
 
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
-  end
-
-  create_table "tasks", force: :cascade do |t|
-    t.string "name"
-    t.integer "status", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "todos", force: :cascade do |t|
@@ -27,8 +20,6 @@ ActiveRecord::Schema.define(version: 2021_10_11_090756) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_todos_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
