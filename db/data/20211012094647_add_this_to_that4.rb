@@ -2,7 +2,7 @@
 
 class AddThisToThat4 < ActiveRecord::Migration[5.2]
   def up
-    puts "実行"
+    puts "datamaigrate3"
   end
 
   def down

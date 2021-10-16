@@ -22,20 +22,20 @@ class TodosController < ApplicationController
   # POST /todos or /todos.json
   def create
     @todo = Todo.new(todo_params)
+    # test3@example.comのユーザーが作られていない事を確認したい
 
     respond_to do |format|
       if @todo.save
 
-        todo = Todo.first
-        user = User.first
-        # @todo.title = "yahoo"
-        binding.pry
+      #   todo = Todo.first
+      #   user = User.first
+      #   # @todo.title = "yahoo"
 
 
-      ActiveRecord::Base.transaction do
-        todo.done!
-        User.create!(email: "aa@aa.aa", password: 'password')
-      end
+      # ActiveRecord::Base.transaction do
+      #   todo.done!
+      #   User.create!(email: "aa@aa.aa", password: 'password')
+      # end
 
         # @todo.with_lock do
 
@@ -46,8 +46,25 @@ class TodosController < ApplicationController
         #   User.create(email: "aa@aa.aa",password: "password")
         #   task.done!
         # end
+  begin
 
-        binding.pry
+    ActiveRecord::Base.transaction do
+
+      User.all.each do |user|
+        if user.id == 1
+          User.create!(email: "test8@example.com", password: "password")
+          binding.pry
+        end
+        User.create!(email: user.email, password: "password")
+      end
+    end
+
+  rescue => e
+    binding.pry
+  end
+  binding.pry
+
+
 
         format.html { redirect_to @todo, notice: "Todo was successfully created." }
         format.json { render :show, status: :created, location: @todo }
