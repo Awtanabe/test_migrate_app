@@ -2,9 +2,7 @@
 
 class AddThisToThat < ActiveRecord::Migration[5.2]
   def up
-    Task.all.each do |task|
-      task.update(name: "HogeHoge")
-    end
+    puts "datamaigrate1"
   end
 
   def down
