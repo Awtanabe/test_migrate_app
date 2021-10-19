@@ -4,7 +4,6 @@ class TodosController < ApplicationController
   # GET /todos or /todos.json
   def index
     @todos = Todo.all
-    # テスト修正
   end
 
   # GET /todos/1 or /todos/1.json
